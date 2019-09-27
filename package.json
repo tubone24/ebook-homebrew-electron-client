@@ -4,6 +4,9 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
+    "start": "electron ./src",
+    "build-macOS": "electron-packager ./src FirstApp --platform=darwin --arch=x64 --overwrite",
+    "build-windows": "electron-packager ./src FirstApp --platform=win32 --arch=x64 --overwrite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +23,8 @@
   "devDependencies": {
     "electron": "^6.0.10",
     "electron-packager": "^14.0.6"
+  },
+  "dependencies": {
+    "electron-log": "^3.0.8"
   }
 }
