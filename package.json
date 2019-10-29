@@ -2,11 +2,14 @@
   "name": "ebook-homebrew-electron-client",
   "version": "1.0.0",
   "description": "",
-  "main": "src/main.js",
+  "main": "src/main.ts",
   "scripts": {
-    "start": "electron ./src",
-    "build-macOS": "electron-packager ./src FirstApp --platform=darwin --arch=x64 --overwrite",
-    "build-windows": "electron-packager ./src FirstApp --platform=win32 --arch=x64 --overwrite",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start": "npm run build && electron ./dist/main.js",
+    "build-macOS": "electron-packager ./dist FirstApp --platform=darwin --arch=x64 --overwrite",
+    "build-windows": "electron-packager ./dist FirstApp --platform=win32 --arch=x64 --overwrite",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +25,8 @@
   "homepage": "https://github.com/tubone24/ebook-homebrew-electron-client#readme",
   "devDependencies": {
     "electron": "^6.0.10",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.0",
     "electron-packager": "^14.0.6"
   },
   "dependencies": {
