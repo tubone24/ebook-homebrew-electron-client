@@ -14,7 +14,8 @@ const main = {
     __filename: false
   },
   module: {
-    rules: [{
+    rules: [
+      {
       test: /.ts?$/,
       include: [
         path.resolve(__dirname, 'src'),
@@ -23,14 +24,26 @@ const main = {
         path.resolve(__dirname, 'node_modules'),
       ],
       loader: 'ts-loader',
-    },
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader'],
+      },
       {
         test: /\.(jpg|png)$/,
-        include: [
-          path.resolve(__dirname, 'src/assets'),
-        ],
-        loader: 'file-loader?name=[name].[ext]',
-      }]
+        loader: 'url-loader',
+        options: {
+          fallback: require.resolve('responsive-loader'),
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
+      },
+    ]
   },
   resolve: {
     extensions: ['.js', '.ts']
@@ -66,6 +79,10 @@ const renderer = {
     }]
   },
 };
+
+const assets = {
+
+}
 
 module.exports = [
   main, renderer
