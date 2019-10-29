@@ -2,3 +2,6 @@
 .idea
 node_modules
 FirstApp-win32-x64
+
+# build
+dist
